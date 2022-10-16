@@ -6,7 +6,7 @@ export const getAllPizzas = () => async (dispatch) => {
   dispatch({ type: 'GET_PIZZAS_REQUEST' });
 
   try {
-    const response = await axios.get(`${config.HOST}/pizzas/getallpizzas`);
+    const response = await axios.get(`${config.HOST}/api/pizzas/getallpizzas`);
     console.log(response);
     dispatch({ type: 'GET_PIZZAS_SUCCESS', payload: response.data });
   } catch (error) {
@@ -18,9 +18,12 @@ export const getPizzaById = (pizzaid) => async (dispatch) => {
   dispatch({ type: 'GET_PIZZABYID_REQUEST' });
 
   try {
-    const response = await axios.post(`${config.HOST}/pizzas/getpizzabyid`, {
-      pizzaid,
-    });
+    const response = await axios.post(
+      `${config.HOST}/api/pizzas/getpizzabyid`,
+      {
+        pizzaid,
+      }
+    );
     console.log(response);
     dispatch({ type: 'GET_PIZZABYID_SUCCESS', payload: response.data });
   } catch (error) {
@@ -33,7 +36,7 @@ export const filterPizzas = (searchkey, category) => async (dispatch) => {
 
   try {
     var filteredPizzas;
-    const response = await axios.get(`${config.HOST}/pizzas/getallpizzas`);
+    const response = await axios.get(`${config.HOST}/api/pizzas/getallpizzas`);
     filteredPizzas = response.data.filter((pizza) =>
       pizza.name.toLowerCase().includes(searchkey)
     );
@@ -52,7 +55,7 @@ export const filterPizzas = (searchkey, category) => async (dispatch) => {
 export const addPizza = (pizza) => async (dispatch) => {
   dispatch({ type: 'ADD_PIZZA_REQUEST' });
   try {
-    const response = await axios.post(`${config.HOST}/pizzas/addpizza`, {
+    const response = await axios.post(`${config.HOST}/api/pizzas/addpizza`, {
       pizza,
     });
     console.log(response);
@@ -65,12 +68,12 @@ export const addPizza = (pizza) => async (dispatch) => {
 export const editPizza = (editedpizza) => async (dispatch) => {
   dispatch({ type: 'EDIT_PIZZA_REQUEST' });
   try {
-    const response = await axios.post(`${config.HOST}/pizzas/editpizza`, {
+    const response = await axios.post(`${config.HOST}/api/pizzas/editpizza`, {
       editedpizza,
     });
     console.log(response);
     dispatch({ type: 'EDIT_PIZZA_SUCCESS' });
-    window.location.href = `${config.HOST}/admin/pizzaslist`;
+    window.location.href = `${config.HOST}/api/admin/pizzaslist`;
   } catch (error) {
     dispatch({ type: 'EDIT_PIZZA_FAILED', payload: error });
   }
@@ -78,7 +81,7 @@ export const editPizza = (editedpizza) => async (dispatch) => {
 
 export const deletePizza = (pizzaid) => async (dispatch) => {
   try {
-    const response = await axios.post(`${config.HOST}/pizzas/deletepizza`, {
+    const response = await axios.post(`${config.HOST}/api/pizzas/deletepizza`, {
       pizzaid,
     });
     alert('Pizza Deleted Successfully');
