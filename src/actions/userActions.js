@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 const config = require('../config.json');
 
@@ -24,7 +25,9 @@ export const loginUser = (user) => async (dispatch) => {
     console.log(response);
     dispatch({ type: 'USER_LOGIN_SUCCESS', payload: response.data });
     localStorage.setItem('currentUser', JSON.stringify(response.data));
-    window.location.href = '/';
+    response.data.isAdmin
+      ? (window.location.href = '/admin')
+      : (window.location.href = '/');
   } catch (error) {
     dispatch({ type: 'USER_LOGIN_FAILED', payload: error });
   }

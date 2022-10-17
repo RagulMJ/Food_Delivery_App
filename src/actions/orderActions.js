@@ -6,8 +6,11 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
   dispatch({ type: 'PLACE_ORDER_REQUEST' });
   const currentUser = getState().loginUserReducer.currentUser;
   const cartItems = getState().cartReducer.cartItems;
-
+  console.log('payment started');
+  console.log(cartItems);
+  console.log(currentUser);
   try {
+    console.log('payment started 1');
     const response = await axios.post(`${config.HOST}/api/orders/placeorder`, {
       token,
       subtotal,
