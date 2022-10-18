@@ -14,6 +14,8 @@ The link to access the backend is as below:
 
 Source code: https://github.com/RagulMJ/Pizza_Delivery_App_Backend
 
+Deployed URL: https://pizza-delivery-rj.netlify.app/
+
 Card Details:
 Card-No: 4242 4242 4242 4242 <br/>
 MM/YY: 12 / 23 <br/>
